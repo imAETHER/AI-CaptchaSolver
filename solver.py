@@ -31,7 +31,7 @@ def solveCaptcha(url, color = None) -> str:
   try:
     img = Image.open(requests.get(url, stream=True).raw)
     if color is not None:
-      img = prepare(img, color)
+      img = process(img, color)
 
     result = model(img)
 
