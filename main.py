@@ -3,6 +3,7 @@ from fastapi import FastAPI
 from typing import Union
 from fastapi.responses import JSONResponse
 from solver import solveCaptcha
+import uvicorn
 
 api = FastAPI(title="CaptchaSolver")
 checker = Client(headers={
@@ -26,5 +27,4 @@ def solve_api(captcha: str, color: Union[str, None] = None):
   return JSONResponse({ "success": True, "solve": data })
 
 if __name__ == "__main__":
-  import os
-  os.system("uvicorn main:api --host 0.0.0.0 --port 3007")
+  uvicorn.run("main:api", port=3007, log_level="info")
